@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ochita - Найдите фильм своей мечты</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            background-color: #000C1A;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #000C1A;
+        }
+        header .logo {
+            font-size: 1.5em;
+            color: #00A3FF;
+            font-weight: bold;
+        }
+        header nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1em;
+        }
+        header button {
+            background-color: #00A3FF;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(145deg, #000C1A, #00162D);
+        }
+        #hero h1 {
+            font-size: 2.5em;
+            color: #00A3FF;
+        }
+        #hero p {
+            font-size: 1.2em;
+            color: #C0C9D3;
+        }
+        #hero .film-inputs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .film-select-block {
+            position: relative;
+            width: 200px;
+            padding: 10px;
+            background-color: #00162D;
+            border-radius: 5px;
+        }
+        .film-select-block input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00162D;
+            color: #ffffff;
+            box-sizing: border-box;
+        }
+        .film-dropdown {
+            position: absolute;
+            top: 45px;
+            width: 100%;
+            background-color: #00162D;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            max-height: 150px;
+            overflow-y: auto;
+            display: none;
+            z-index: 10;
+        }
+        .film-dropdown div {
+            padding: 10px;
+            color: #C0C9D3;
+            cursor: pointer;
+        }
+        .film-dropdown div:hover {
+            background-color: #00A3FF;
+        }
+        .add-film-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #00A3FF;
+            color: #ffffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5em;
+            cursor: pointer;
+            border: none;
+        }
+        #hero button {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: #00A3FF;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        #result {
+            display: none;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #00162D;
+            border-radius: 5px;
+        }
+        #result .main-movie {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #result .main-movie img {
+            width: 200px;
+            height: auto;
+            border-radius: 5px;
+        }
+        #result .main-movie h2 {
+            color: #00A3FF;
+            margin: 10px 0;
+        }
+        #result .main-movie p {
+            color: #C0C9D3;
+            margin: 5px 0;
+        }
+        #result .similar-movies {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        #result .similar-movies div {
+            background-color: #00162D;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            color: #C0C9D3;
+        }
+        #result .similar-movies div:hover {
+            background-color: #00A3FF;
+            color: #ffffff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Ochita</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>Найдите фильм своей мечты</h1>
+        <p>Совмещайте любимые фильмы и откройте что-то новое</p>
+        
+        <div id="filmInputs" class="film-inputs">
+            <div class="film-select-block">
+                <input type="text" oninput="filterMovies(this)" placeholder="Выберите фильм" onfocus="showInput(this)">
+                <div class="film-dropdown"></div>
+            </div>
+            <div class="film-select-block">
+                <input type="text" oninput="filterMovies(this)" placeholder="Выберите фильм" onfocus="showInput(this)">
+                <div class="film-dropdown"></div>
+            </div>
+        </div>
+        
+        <button class="add-film-button" onclick="addFilmInput()">+</button>
+        <button onclick="searchMovies()">Найти</button>
+    </section>
+
+    <!-- Result Section -->
+    <div id="result">
+        <div class="main-movie">
+            <img id="moviePoster" src="poster-placeholder.png" alt="Постер фильма">
+            <h2 id="movieTitle">Название фильма</h2>
+            <p id="movieYear">Год выпуска: </p>
+            <p id="movieAge">Возрастное ограничение: </p>
+            <p id="movieGenres">Жанры: </p>
+            <p id="movieCountry">Страна: </p>
+            <p id="movieDirector">Режиссёр: </p>
+            <p id="movieActors">Актёры: </p>
+            <p id="movieRating">Рейтинг IMDb: </p>
+            <p id="movieDescription">Описание: </p>
+            <p id="movieReason">Почему этот фильм подходит: </p>
+        </div>
+        <div class="similar-movies">
+            <!-- 10 ячеек для других фильмов -->
+            <div id="similarMovies"></div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // Пример фильмов
+        const movies = [
+            "Inception", "Interstellar", "The Dark Knight", "Pulp Fiction", "The Matrix"
+        ];
+
+        // Поиск и фильтрация списка фильмов
+        function filterMovies(input) {
+            const query = input.value.toLowerCase();
+            const dropdown = input.nextElementSibling;
+            dropdown.innerHTML = '';
+            movies.forEach(movie => {
+                if (movie.toLowerCase().includes(query)) {
+                    const option = document.createElement('div');
+                    option.textContent = movie;
+                    option.onclick = () => {
+                        input.value = movie;
+                        dropdown.style.display = 'none';
+                    };
+                    dropdown.appendChild(option);
+                }
+            });
+            dropdown.style.display = query ? 'block' : 'none';
+        }
+
+        // Добавить новое поле для ввода фильма
+        function addFilmInput() {
+            const filmInputs = document.getElementById("filmInputs");
+            const newBlock = document.createElement("div");
+            newBlock.className = "film-select-block";
+            newBlock.innerHTML = `
+                <input type="text" oninput="filterMovies(this)" placeholder="Выберите фильм" onfocus="showInput(this)">
+                <div class="film-dropdown"></div>
+            `;
+            filmInputs.appendChild(newBlock);
+        }
+
+        // Отправить запрос к серверу
+        async function searchMovies() {
+            const filmInputs = document.querySelectorAll("#filmInputs input");
+            const selectedMovies = Array.from(filmInputs).map(input => input.value).filter(Boolean);
+        
+            if (selectedMovies.length === 0) {
+                alert("Выберите хотя бы один фильм!");
+                return;
+            }
+        
+            try {
+                const response = await fetch("http://127.0.0.1:5000/api/get-movie", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ movies: selectedMovies })
+                });
+        
+                if (!response.ok) throw new Error("Ошибка на сервере");
+        
+                const data = await response.json();
+        
+                // Обновление страницы результатами
+                updateResult(data);
+            } catch (error) {
+                console.error("Ошибка:", error);
+                alert("Не удалось найти фильмы. Попробуйте ещё раз.");
+            }
+        }
+        
+        function updateResult(data) {
+            document.getElementById("moviePoster").src = data.poster || "poster-placeholder.png";
+            document.getElementById("movieTitle").textContent = data.title || "Название фильма";
+            document.getElementById("movieYear").textContent = "Год выпуска: " + (data.year || "Неизвестно");
+            document.getElementById("movieAge").textContent = "Возрастное ограничение: " + (data.age_restriction || "Неизвестно");
+            document.getElementById("movieCountry").textContent = "Страна: " + (data.country || "Неизвестно");
+            document.getElementById("movieDirector").textContent = "Режиссёр: " + (data.director || "Неизвестно");
+            document.getElementById("movieActors").textContent = "Актеры: " + (data.actors || "Неизвестно");            
+            document.getElementById("movieGenres").textContent = "Жанры: " + (data.genres || "Нет информации");
+            document.getElementById("movieRating").textContent = "Рейтинг IMDb: " + (data.rating || "Нет информации");
+            document.getElementById("movieDescription").textContent = "Описание: " + (data.description || "Нет информации");
+            document.getElementById("movieReason").textContent = "Почему этот фильм подходит: " + (data.reason || "Нет информации");
+        
+            const similarMoviesDiv = document.getElementById("similarMovies");
+            similarMoviesDiv.innerHTML = ""; // Очистить
+            (data.similarMovies || []).forEach(movie => {
+                const movieDiv = document.createElement("div");
+                movieDiv.textContent = movie;
+                similarMoviesDiv.appendChild(movieDiv);
+            });
+        
+            document.getElementById("result").style.display = "block";
+        }
+
+    </script>
+</body>
+</html>
