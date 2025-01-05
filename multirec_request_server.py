@@ -1,20 +1,21 @@
 import openai
 import os
 import json
-import config
 import requests as rq
 from bs4 import BeautifulSoup
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 app = Flask(__name__)
 CORS(app)
 
-os.environ['https_proxy'] = config.http_proxy_data
-openai.api_key = config.open_ai_api_key
+os.environ['https_proxy'] = os.getenv('http_proxy_data')
+openai.api_key = os.getenv('open_ai_api_key')
 
 def get_request_omdb(eng_movie_title, movie_year):
-    omdb_request = rq.get(f'https://www.omdbapi.com/?t={eng_movie_title}&y={movie_year}&plot=full&apikey={config.omdb_api_key}')
+    omdb_request = rq.get(f'https://www.omdbapi.com/?t={eng_movie_title}&y={movie_year}&plot=full&apikey={os.getenv('omdb_api_key')}')
     omdb_movie_info = json.loads(str(BeautifulSoup(omdb_request.content,'html.parser')))
     
     return omdb_movie_info
