@@ -7,7 +7,7 @@ class GPTClient:
         self.model = model
         openai.api_key = self.api_key
 
-    def make_request(self, prompt, functions=None, function_call = "auto"):
+    def make_request(self, prompt, functions = None, function_call = "auto"):
         try:
             response = openai.ChatCompletion.create(
                 model = self.model,
@@ -34,7 +34,7 @@ def generate_crossed_movie(prompt, gpt_client):
             },
         }
     ]
-    response_message = gpt_client.make_request(prompt, functions=functions)
+    response_message = gpt_client.make_request(prompt, functions = functions)
     if "function_call" in response_message:
         return json.loads(response_message["function_call"]["arguments"])
     else:
