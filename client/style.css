@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    background-color: #000C1A;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #000C1A;
+}
+
+header .logo {
+    font-size: 1.5em;
+    color: #00A3FF;
+    font-weight: bold;
+}
+
+#hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(145deg, #000C1A, #00162D);
+}
+
+#hero h1 {
+    font-size: 2.5em;
+    color: #00A3FF;
+}
+
+#hero p {
+    font-size: 1.2em;
+    color: #C0C9D3;
+}
+
+.film-inputs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.add-film-button {
+    background-color: #00A3FF;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5em;
+    cursor: pointer;
+    border: none;
+}
