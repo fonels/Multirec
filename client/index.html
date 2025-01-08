@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ochita - Найдите фильм своей мечты</title>
-    <link rel="stylesheet" href="style.css"> <!-- Подключение стилей -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Подключение стилей -->
 </head>
 <body>
     <!-- Header -->
@@ -50,6 +50,6 @@
         <div id="similarMovies" class="similar-movies"></div>
     </div>
 
-    <script src="script.js"></script> <!-- Подключение JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!-- Подключение JavaScript -->
 </body>
 </html>

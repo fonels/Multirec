@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from server.services.omdb_service import OMDBService
 from server.utils.gpt_request import GPTClient, generate_crossed_movie
 from server.utils.config import Config
@@ -7,7 +7,6 @@ api = Blueprint('api', __name__)
 
 gpt_client = GPTClient(Config.OPENAI_API_KEY)
 omdb_service = OMDBService(Config.OMDB_API_KEY)
-
 
 @api.route('/get-movie', methods=['POST'])
 def create_crossed_movie():
