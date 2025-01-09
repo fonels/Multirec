@@ -72,7 +72,7 @@ function updateResult(data) {
     document.getElementById("movieDirector").textContent = "Режиссёр: " + (data.director || "Неизвестно");
     document.getElementById("movieActors").textContent = "Актёры: " + (data.actors || "Неизвестно");
     document.getElementById("movieGenres").textContent = "Жанры: " + (data.genres || "Нет информации");
-    document.getElementById("movieRating").textContent = "Рейтинг IMDb: " + (data.rating || "Нет информации");
+    document.getElementById("movieRating").textContent = "Рейтинг IMDb: " + (data.imdb_rating || "Нет информации");
     document.getElementById("movieDescription").textContent = "Описание: " + (data.description || "Нет информации");
     document.getElementById("movieReason").textContent = "Почему этот фильм подходит: " + (data.reason || "Нет информации");
 
