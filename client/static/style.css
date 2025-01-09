@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    background-color: #000C1A;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #000C1A;
+}
+
+header .logo {
+    font-size: 1.5em;
+    color: #00A3FF;
+    font-weight: bold;
+}
+
+#hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(145deg, #000C1A, #00162D);
+}
+
+#hero h1 {
+    font-size: 2.5em;
+    color: #00A3FF;
+}
+
+#hero p {
+    font-size: 1.2em;
+    color: #C0C9D3;
+}
+
+.film-inputs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.film-select-block {
+    position: relative;
+    width: 200px;
+    padding: 10px;
+    background-color: #00162D;
+    border-radius: 5px;
+}
+
+.film-select-block input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #00162D;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+
+.film-dropdown {
+    position: absolute;
+    top: 45px;
+    width: 100%;
+    background-color: #00162D;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 150px;
+    overflow-y: auto;
+    display: none;
+    z-index: 10;
+}
+
+.film-dropdown div {
+    padding: 10px;
+    color: #C0C9D3;
+    cursor: pointer;
+}
+
+.film-dropdown div:hover {
+    background-color: #00A3FF;
+}
+
+.add-film-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00A3FF;
+    color: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5em;
+    cursor: pointer;
+    border: none;
+    margin: 10px;
+}
+
+#hero button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background-color: #00A3FF;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#result {
+    display: none;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #00162D;
+    border-radius: 5px;
+}
+
+#result .main-movie img {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+#result .similar-movies {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}

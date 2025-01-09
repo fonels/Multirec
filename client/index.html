@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ochita - Найдите фильм своей мечты</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Подключение стилей -->
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Ochita</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>Найдите фильм своей мечты</h1>
+        <p>Совмещайте любимые фильмы и откройте что-то новое</p>
+
+        <div id="filmInputs" class="film-inputs">
+            <div class="film-select-block">
+                <input type="text" oninput="filterMovies(this)" placeholder="Выберите фильм" onfocus="showInput(this)">
+                <div class="film-dropdown"></div>
+            </div>
+            <div class="film-select-block">
+                <input type="text" oninput="filterMovies(this)" placeholder="Выберите фильм" onfocus="showInput(this)">
+                <div class="film-dropdown"></div>
+            </div>
+        </div>
+
+        <button class="add-film-button" onclick="addFilmInput()">+</button>
+        <button onclick="searchMovies()">Найти</button>
+    </section>
+
+    <!-- Result Section -->
+    <div id="result">
+        <div class="main-movie">
+            <img id="moviePoster" src="poster-placeholder.png" alt="Постер фильма">
+            <h2 id="movieTitle">Название фильма</h2>
+            <p id="movieYear">Год выпуска: </p>
+            <p id="movieAge">Возрастное ограничение: </p>
+            <p id="movieGenres">Жанры: </p>
+            <p id="movieCountry">Страна: </p>
+            <p id="movieDirector">Режиссёр: </p>
+            <p id="movieActors">Актёры: </p>
+            <p id="movieRating">Рейтинг IMDb: </p>
+            <p id="movieDescription">Описание: </p>
+            <p id="movieReason">Почему этот фильм подходит: </p>
+        </div>
+        <div id="similarMovies" class="similar-movies"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script> <!-- Подключение JavaScript -->
+</body>
+</html>
