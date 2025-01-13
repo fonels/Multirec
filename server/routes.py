@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
-from services.omdb_service import OMDBService
-from services.movie_info import MovieInfo
-from utils.gpt_request import GPTClient, generate_crossed_movie
-from utils.config import Config
+from .services.omdb_service import OMDBService
+from .services.movie_info import MovieInfo
+from .utils.gpt_request import GPTClient, generate_crossed_movie
+from .utils.config import Config
 
 api = Blueprint('api', __name__)
 
