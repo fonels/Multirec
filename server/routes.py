@@ -46,3 +46,7 @@ def create_crossed_movie():
     except Exception as e:
         print(f"Ошибка в create_crossed_movie: {e}")
         return jsonify({"error": str(e)}), 500
+
+@api.route('/favicon.ico')
+def favicon():
+    return '', 204
