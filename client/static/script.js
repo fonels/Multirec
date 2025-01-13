@@ -1,26 +1,26 @@
-// Пример фильмов
-const movies = [
-    "Начало", "Интерстеллар", "Тёмный рыцарь", "Криминальное чтиво", "Матрица"
-];
-
-// Поиск и фильтрация списка фильмов
-function filterMovies(input) {
-    const query = input.value.toLowerCase();
-    const dropdown = input.nextElementSibling;
-    dropdown.innerHTML = '';
-    movies.forEach(movie => {
-        if (movie.toLowerCase().includes(query)) {
-            const option = document.createElement('div');
-            option.textContent = movie;
-            option.onclick = () => {
-                input.value = movie;
-                dropdown.style.display = 'none';
-            };
-            dropdown.appendChild(option);
-        }
-    });
-    dropdown.style.display = query ? 'block' : 'none';
-}
+//// Пример фильмов
+//const movies = [
+//    "Начало", "Интерстеллар", "Тёмный рыцарь", "Криминальное чтиво", "Матрица"
+//];
+//
+//// Поиск и фильтрация списка фильмов
+//function filterMovies(input) {
+//    const query = input.value.toLowerCase();
+//    const dropdown = input.nextElementSibling;
+//    dropdown.innerHTML = '';
+//    movies.forEach(movie => {
+//        if (movie.toLowerCase().includes(query)) {
+//            const option = document.createElement('div');
+//            option.textContent = movie;
+//            option.onclick = () => {
+//                input.value = movie;
+//                dropdown.style.display = 'none';
+//            };
+//            dropdown.appendChild(option);
+//        }
+//    });
+//    dropdown.style.display = query ? 'block' : 'none';
+//}
 
 // Добавить новое поле для ввода фильма
 function addFilmInput() {
@@ -28,10 +28,30 @@ function addFilmInput() {
     const newBlock = document.createElement("div");
     newBlock.className = "film-select-block";
     newBlock.innerHTML = `
-        <input type="text" oninput="filterMovies(this)" placeholder="Выберите фильм" onfocus="showInput(this)">
+        <input type="text" oninput="filterMovies(this)" placeholder="Введите фильм" onfocus="showInput(this)">
         <div class="film-dropdown"></div>
+        <button onclick="removeSpecificBlock(this)">-</button>
     `;
     filmInputs.appendChild(newBlock);
+}
+
+function removeSpecificBlock(button) {
+    const block = button.parentElement;
+    block.remove();
+}
+
+// Удалить последнее поле для ввода фильма
+function removeFilmInput() {
+    const filmInputs = document.getElementById("filmInputs");
+    // Находим последний блок с классом "film-select-block"
+    const lastBlock = filmInputs.querySelector(".film-select-block:last-child");
+
+    // Если блок существует, удаляем его
+    if (lastBlock) {
+        filmInputs.removeChild(lastBlock);
+    } else {
+        console.warn("Нет блоков для удаления.");
+    }
 }
 
 // Отправить запрос к серверу
@@ -75,17 +95,10 @@ function updateResult(data) {
     document.getElementById("movieRating").textContent = "Рейтинг IMDb: " + (data.imdb_rating || "Нет информации");
     document.getElementById("movieDescription").textContent = "Описание: " + (data.description || "Нет информации");
     document.getElementById("movieReason").textContent = "Почему этот фильм подходит: " + (data.reason || "Нет информации");
-
-    const similarMoviesDiv = document.getElementById("similarMovies");
-    similarMoviesDiv.innerHTML = "";
-    (data.similarMovies || []).forEach(movie => {
-        const movieDiv = document.createElement("div");
-        movieDiv.textContent = movie;
-        similarMoviesDiv.appendChild(movieDiv);
-    });
+    document.getElementById("similarMovies").textContent = "Так же советуем посмотреть: " + (data.similar);
+    }
 
     document.getElementById("result").style.display = "block";
-}
 
 function showInput(input) {
     console.log("Input field focused:", input);

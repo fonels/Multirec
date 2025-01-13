@@ -19,23 +19,20 @@
 
         <div id="filmInputs" class="film-inputs">
             <div class="film-select-block">
-                <input type="text" oninput="filterMovies(this)" placeholder="Выберите фильм" onfocus="showInput(this)">
-                <div class="film-dropdown"></div>
-            </div>
-            <div class="film-select-block">
-                <input type="text" oninput="filterMovies(this)" placeholder="Выберите фильм" onfocus="showInput(this)">
+                <input type="text" oninput="filterMovies(this)" placeholder="Введите фильм" onfocus="showInput(this)">
                 <div class="film-dropdown"></div>
             </div>
         </div>
 
         <button class="add-film-button" onclick="addFilmInput()">+</button>
         <button onclick="searchMovies()">Найти</button>
+        <button onclick="removeFilmInput()">-</button>
     </section>
 
     <!-- Result Section -->
     <div id="result">
         <div class="main-movie">
-            <img id="moviePoster" src="poster-placeholder.png" alt="Постер фильма">
+            <img id="moviePoster" src="{{ url_for('static', filename='images/poster-placeholder.png') }}" alt="Постер фильма">
             <h2 id="movieTitle">Название фильма</h2>
             <p id="movieYear">Год выпуска: </p>
             <p id="movieAge">Возрастное ограничение: </p>
@@ -46,6 +43,7 @@
             <p id="movieRating">Рейтинг IMDb: </p>
             <p id="movieDescription">Описание: </p>
             <p id="movieReason">Почему этот фильм подходит: </p>
+            <p id="similarMovies">Так же советуем посмотреть:  </p>
         </div>
     </div>
 

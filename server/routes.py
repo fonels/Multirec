@@ -22,6 +22,9 @@ def create_crossed_movie():
             "Подбери реально существующий фильм, который совмещает в себе элементы "
             f"вот этих фильмов, но НЕ входит в их список: {', '.join(user_input_movies)}. "
             "Назови такой фильм, который существует в реальности."
+            "Также назови 10 фильмов, которые тоже совмещают в себе элементы фильмов"
+            f"НО НЕ ВХОДЯТ в их список: {', '.join(user_input_movies)}."
+            "Вся информация о фильме должна быть выведена на РУССКОМ языке, КРОМЕ английского названия."
         )
         gpt_response = generate_crossed_movie(prompt, gpt_client)
         raw_omdb = omdb_service.get_movie_info(gpt_response['english_movie_title'],gpt_response['main_movie_year'])
@@ -36,6 +39,8 @@ def create_crossed_movie():
         mapped_data["actors"] = gpt_response['movie_actors']
         mapped_data["description"] = gpt_response['movie_description']
         mapped_data["reason"] = gpt_response['movie_reason']
+        mapped_data["similar"] = gpt_response['ten_crossed_movies_list']
+        print(mapped_data)
         return jsonify(mapped_data)
 
     except Exception as e:

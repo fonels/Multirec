@@ -44,6 +44,9 @@ header .logo {
 }
 
 .film-select-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
     position: relative;
     width: 200px;
     padding: 10px;
