@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 from flask_cors import CORS
 from .routes import api
-from .utils.config import Config
 import os
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
@@ -19,4 +18,5 @@ def home():
 
 port = int(os.environ.get("PORT", 5000))
 if __name__ == '__main__':
-    app.run(debug=Config.FLASK_DEBUG, host=Config.FLASK_HOST, port=port)
+    app.run(host="0.0.0.0", port=port)
+print(os.environ)
