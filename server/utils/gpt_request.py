@@ -1,6 +1,5 @@
 import openai
 import json
-import os
 
 class GPTClient:
     def __init__(self, api_key, model="gpt-4o"):
