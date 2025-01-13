@@ -3,7 +3,7 @@ import json
 import os
 from server.utils.config import Config
 
-# os.environ['https_proxy'] = Config.HTTP_PROXY
+os.environ['https_proxy'] = Config.HTTP_PROXY
 
 class GPTClient:
     def __init__(self, api_key, model="gpt-4o"):

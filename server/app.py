@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask_cors import CORS
-from server.routes import api
-from server.utils.config import Config
+from routes import api
+from utils.config import Config
 import os
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))

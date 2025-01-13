@@ -4,14 +4,6 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 
 class Config:
-    OMDB_API_KEY = os.environ["OMDB_API_KEY"]
-    OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
-    HTTP_PROXY = os.environ["HTTP_PROXY"]
-    FLASK_DEBUG = os.environ["FLASK_DEBUG"]
-    FLASK_HOST = os.environ["FLASK_HOST"]
-    FLASK_PORT = int(os.environ["FLASK_PORT"])
-
-class Config_env:
     OMDB_API_KEY = os.getenv('OMDB_API_KEY')
     OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
     HTTP_PROXY = os.getenv('HTTP_PROXY')
