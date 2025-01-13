@@ -17,5 +17,6 @@ app.register_blueprint(api, url_prefix='/api')
 def home():
     return render_template('index.html')
 
+port = int(os.environ.get("PORT", 5000))
 if __name__ == '__main__':
-    app.run(debug=Config.FLASK_DEBUG, host=Config.FLASK_HOST, port=Config.FLASK_PORT)
+    app.run(debug=Config.FLASK_DEBUG, host=Config.FLASK_HOST, port=port)
