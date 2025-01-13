@@ -48,13 +48,14 @@ header .logo {
     align-items: center;
     margin-bottom: 10px;
     position: relative;
-    width: 200px;
-    padding: 10px;
-    background-color: #00162D;
-    border-radius: 5px;
 }
 
 .film-select-block input {
+    flex: 1; /* Поле ввода занимает оставшееся место */
+    padding: 8px; /* Внутренние отступы для удобства */
+    margin-right: 5px; /* Расстояние между полем и кнопкой */
+    font-size: 14px; /* Размер шрифта */
+
     width: 100%;
     padding: 8px;
     border: none;
@@ -62,6 +63,20 @@ header .logo {
     background-color: #00162D;
     color: #ffffff;
     box-sizing: border-box;
+}
+
+.film-select-block button {
+    padding: 6px 12px; /* Компактные отступы */
+    font-size: 14px; /* Размер шрифта */
+    cursor: pointer; /* Указатель мыши при наведении */
+    border: 1px solid #ccc; /* Граница кнопки */
+    background-color: #f5f5f5; /* Цвет фона */
+    border-radius: 4px; /* Сглаженные углы */
+    transition: background-color 0.3s; /* Анимация при наведении */
+}
+
+.film-select-block button:hover {
+    background-color: #ddd; /* Цвет кнопки при наведении */
 }
 
 .film-dropdown {
@@ -85,21 +100,6 @@ header .logo {
 
 .film-dropdown div:hover {
     background-color: #00A3FF;
-}
-
-.add-film-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #00A3FF;
-    color: #ffffff;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    font-size: 1.5em;
-    cursor: pointer;
-    border: none;
-    margin: 10px;
 }
 
 #hero button {

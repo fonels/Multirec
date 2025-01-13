@@ -1,27 +1,3 @@
-//// Пример фильмов
-//const movies = [
-//    "Начало", "Интерстеллар", "Тёмный рыцарь", "Криминальное чтиво", "Матрица"
-//];
-//
-//// Поиск и фильтрация списка фильмов
-//function filterMovies(input) {
-//    const query = input.value.toLowerCase();
-//    const dropdown = input.nextElementSibling;
-//    dropdown.innerHTML = '';
-//    movies.forEach(movie => {
-//        if (movie.toLowerCase().includes(query)) {
-//            const option = document.createElement('div');
-//            option.textContent = movie;
-//            option.onclick = () => {
-//                input.value = movie;
-//                dropdown.style.display = 'none';
-//            };
-//            dropdown.appendChild(option);
-//        }
-//    });
-//    dropdown.style.display = query ? 'block' : 'none';
-//}
-
 // Добавить новое поле для ввода фильма
 function addFilmInput() {
     const filmInputs = document.getElementById("filmInputs");
@@ -30,7 +6,7 @@ function addFilmInput() {
     newBlock.innerHTML = `
         <input type="text" oninput="filterMovies(this)" placeholder="Введите фильм" onfocus="showInput(this)">
         <div class="film-dropdown"></div>
-        <button onclick="removeSpecificBlock(this)">-</button>
+        <button class="film-select-block button" onclick="removeSpecificBlock(this)">-</button>
     `;
     filmInputs.appendChild(newBlock);
 }

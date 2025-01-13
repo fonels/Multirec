@@ -19,12 +19,13 @@
 
         <div id="filmInputs" class="film-inputs">
             <div class="film-select-block">
-                <input type="text" oninput="filterMovies(this)" placeholder="Введите фильм" onfocus="showInput(this)">
+                <input type="text" placeholder="Введите фильм" onfocus="showInput(this)">
+                <button class="film-select-block" onclick="removeSpecificBlock(this)">-</button>
                 <div class="film-dropdown"></div>
             </div>
         </div>
 
-        <button class="add-film-button" onclick="addFilmInput()">+</button>
+        <button onclick="addFilmInput()">+</button>
         <button onclick="searchMovies()">Найти</button>
         <button onclick="removeFilmInput()">-</button>
     </section>
