@@ -41,7 +41,7 @@ def generate_crossed_movie(prompt, gpt_client):
                 "properties": {
                     "main_movie_title": {"type": "string", "description": "Название похожего фильма, которого НЕТ в списке"},
                     "main_movie_year": {"type": "integer", "description": "Год выпуска"},
-                    "ten_crossed_movies_list": {"type": "string", "description": "Список из 10 фильмов"},
+                    "ten_crossed_movies_list": {"type": "string", "description": "Список из 10 похожих на введенные фильмов, НО в списке не должно быть результирующего фильма и фильмов, введенных пользователем."},
                     "english_movie_title": {"type": "string", "description": "Название этого фильма на английском языке"},
                     "movie_reason": {"type": "string", "description": "Чем эти фильмы похожи? Составь объемное описание"},
 
