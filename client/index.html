@@ -4,50 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ochita - Найдите фильм своей мечты</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- Подключение стилей -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="logo">Ochita</div>
+        <div class="version">Release v1.1</div>
     </header>
+    <div class="container">
+        <section id="hero">
+            <p>Совмещайте любимые фильмы и откройте что-то новое</p>
+            <h1>Найдите фильм своей мечты</h1>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <h1>Найдите фильм своей мечты</h1>
-        <p>Совмещайте любимые фильмы и откройте что-то новое</p>
-
-        <div id="filmInputs" class="film-inputs">
-            <div class="film-select-block">
-                <input type="text" placeholder="Введите фильм" onfocus="showInput(this)">
-                <button class="film-select-block" onclick="removeSpecificBlock(this)">-</button>
-                <div class="film-dropdown"></div>
+            <div id="filmInputs" class="film-inputs">
+                <div class="film-select-block">
+                    <input type="text" placeholder="Введите фильм" class="styled-input">
+                    <button class="styled-button remove" onclick="removeSpecificBlock(this)">-</button>
+                </div>
+            </div>
+            <div class="button-group">
+                <button class="styled-button add" onclick="addFilmInput()">+</button>
+                <button class="styled-button search" id="searchButton" onclick="searchMovies()">Найти</button>
+                <button class="styled-button remove" onclick="removeFilmInput()">-</button>
+            </div>
+        </section>
+        <div id="result" style="display: none;">
+            <h2 id="movieTitle">Название фильма</h2>
+            <div class="main-movie">
+                <img id="moviePoster" src="{{ url_for('static', filename='images/poster-placeholder.png') }}" alt="Постер фильма">
+                <p id="movieReason"><span class="title">Почему этот фильм подходит: </span></p>
+            </div>
+            <div class="movie-info">
+                <p id="movieYear"><span class="title">Год выпуска: </span></p>
+                <p id="movieAge"><span class="title">Возрастное ограничение: </span></p>
+                <p id="movieGenres"><span class="title">Жанры: </span></p>
+                <p id="movieCountry"><span class="title">Страна: </span></p>
+                <p id="movieDirector"><span class="title">Режиссёр: </span></p>
+                <p id="movieActors"><span class="title">Актёры: </span></p>
+                <p id="movieRating"><span class="title">Рейтинг IMDb: </span></p>
+                <p id="movieDescription"><span class="title">Описание: </span></p>
+                <p id="similarMovies"><span class="title">Так же советуем посмотреть: </span></p>
             </div>
         </div>
-
-        <button onclick="addFilmInput()">+</button>
-        <button onclick="searchMovies()">Найти</button>
-        <button onclick="removeFilmInput()">-</button>
-    </section>
-
-    <!-- Result Section -->
-    <div id="result">
-        <div class="main-movie">
-            <img id="moviePoster" src="{{ url_for('static', filename='images/poster-placeholder.png') }}" alt="Постер фильма">
-            <h2 id="movieTitle">Название фильма</h2>
-            <p id="movieYear">Год выпуска: </p>
-            <p id="movieAge">Возрастное ограничение: </p>
-            <p id="movieGenres">Жанры: </p>
-            <p id="movieCountry">Страна: </p>
-            <p id="movieDirector">Режиссёр: </p>
-            <p id="movieActors">Актёры: </p>
-            <p id="movieRating">Рейтинг IMDb: </p>
-            <p id="movieDescription">Описание: </p>
-            <p id="movieReason">Почему этот фильм подходит: </p>
-            <p id="similarMovies">Так же советуем посмотреть:  </p>
+        <div id="loader" style="opacity: 0;">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
         </div>
     </div>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script> <!-- Подключение JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+<footer>
+    <div class="footer-container">
+        <p>© 2025 Ochita. УрФУ. ИРИТ-РТФ.</p>
+        <p>Почта: <a href="mailto:roman.gainutdinov@urfu.me">roman.gainutdinov@urfu.me</a> | Telegram: <a target="_blank" href="https://t.me/ffonel">@ffonel </p>
+    </div>
+</footer>
 </html>

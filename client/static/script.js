@@ -1,39 +1,61 @@
-// Добавить новое поле для ввода фильма
 function addFilmInput() {
     const filmInputs = document.getElementById("filmInputs");
     const newBlock = document.createElement("div");
     newBlock.className = "film-select-block";
-    newBlock.innerHTML = `
-        <input type="text" oninput="filterMovies(this)" placeholder="Введите фильм" onfocus="showInput(this)">
-        <div class="film-dropdown"></div>
-        <button class="film-select-block button" onclick="removeSpecificBlock(this)">-</button>
-    `;
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Введите фильм";
+    input.className = "styled-input";
+
+    const button = document.createElement("button");
+    button.className = "styled-button remove";
+    button.textContent = "-";
+    button.onclick = function () {
+        removeSpecificBlock(button);
+    };
+
+    newBlock.appendChild(input);
+    newBlock.appendChild(button);
     filmInputs.appendChild(newBlock);
 }
+
 
 function removeSpecificBlock(button) {
     const block = button.parentElement;
     block.remove();
 }
 
-// Удалить последнее поле для ввода фильма
+
 function removeFilmInput() {
     const filmInputs = document.getElementById("filmInputs");
-    // Находим последний блок с классом "film-select-block"
-    const lastBlock = filmInputs.querySelector(".film-select-block:last-child");
-
-    // Если блок существует, удаляем его
+    const lastBlock = filmInputs.lastElementChild;
     if (lastBlock) {
         filmInputs.removeChild(lastBlock);
     } else {
-        console.warn("Нет блоков для удаления.");
+        alert("Нет блоков для удаления!");
     }
 }
 
-// Отправить запрос к серверу
+
+function showLoader() {
+    const loader = document.getElementById("loader");
+    const result = document.getElementById("result");
+    result.style.display = "none";
+    loader.style.visibility = "visible";
+    loader.style.opacity = "1";
+}
+
+function hideLoader() {
+    const loader = document.getElementById("loader");
+    loader.style.visibility = "hidden";
+    loader.style.opacity = "0";
+}
+
+
 async function searchMovies() {
-    const filmInputs = document.querySelectorAll("#filmInputs input");
-    const selectedMovies = Array.from(filmInputs).map(input => input.value).filter(Boolean);
+    const filmInputs = document.querySelectorAll("#filmInputs .styled-input");
+    const selectedMovies = Array.from(filmInputs).map(input => input.value.trim()).filter(Boolean);
 
     if (selectedMovies.length === 0) {
         alert("Выберите хотя бы один фильм!");
@@ -41,6 +63,8 @@ async function searchMovies() {
     }
 
     try {
+        showLoader();
+
         const response = await fetch("/api/get-movie", {
             method: "POST",
             headers: {
@@ -56,25 +80,29 @@ async function searchMovies() {
     } catch (error) {
         console.error("Ошибка:", error);
         alert("Не удалось найти фильмы. Попробуйте ещё раз.");
+    } finally {
+        hideLoader();
     }
 }
+
 
 function updateResult(data) {
     document.getElementById("moviePoster").src = data.poster || "poster-placeholder.png";
     document.getElementById("movieTitle").textContent = data.title || "Название фильма";
-    document.getElementById("movieYear").textContent = "Год выпуска: " + (data.year || "Неизвестно");
-    document.getElementById("movieAge").textContent = "Возрастное ограничение: " + (data.age_restriction || "Неизвестно");
-    document.getElementById("movieCountry").textContent = "Страна: " + (data.country || "Неизвестно");
-    document.getElementById("movieDirector").textContent = "Режиссёр: " + (data.director || "Неизвестно");
-    document.getElementById("movieActors").textContent = "Актёры: " + (data.actors || "Неизвестно");
-    document.getElementById("movieGenres").textContent = "Жанры: " + (data.genres || "Нет информации");
-    document.getElementById("movieRating").textContent = "Рейтинг IMDb: " + (data.imdb_rating || "Нет информации");
-    document.getElementById("movieDescription").textContent = "Описание: " + (data.description || "Нет информации");
-    document.getElementById("movieReason").textContent = "Почему этот фильм подходит: " + (data.reason || "Нет информации");
-    document.getElementById("similarMovies").textContent = "Так же советуем посмотреть: " + (data.similar);
-    }
+    document.getElementById("movieYear").innerHTML = `<span class="title">Год выпуска:</span> ${data.year || "Неизвестно"}`;
+    document.getElementById("movieAge").innerHTML = `<span class="title">Возрастное ограничение:</span> ${data.age_restriction || "Неизвестно"}`;
+    document.getElementById("movieCountry").innerHTML = `<span class="title">Страна:</span> ${data.country || "Неизвестно"}`;
+    document.getElementById("movieDirector").innerHTML = `<span class="title">Режиссёр:</span> ${data.director || "Неизвестно"}`;
+    document.getElementById("movieActors").innerHTML = `<span class="title">Актёры:</span> ${data.actors || "Неизвестно"}`;
+    document.getElementById("movieGenres").innerHTML = `<span class="title">Жанры:</span> ${data.genres || "Нет информации"}`;
+    document.getElementById("movieRating").innerHTML = `<span class="title">Рейтинг IMDb:</span> ${data.imdb_rating || "Нет информации"}`;
+    document.getElementById("movieDescription").innerHTML = `<span class="title">Описание:</span> ${data.description || "Нет информации"}`;
+    document.getElementById("movieReason").innerHTML = `<span class="title">Почему этот фильм подходит:</span> ${data.reason || "Нет информации"}`;
+    document.getElementById("similarMovies").innerHTML = `<span class="title">Так же советуем посмотреть:</span> ${data.similar || "Нет информации"}`;
 
     document.getElementById("result").style.display = "block";
+}
+
 
 function showInput(input) {
     console.log("Input field focused:", input);

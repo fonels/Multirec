@@ -1,134 +1,331 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    color: #ffffff;
-    background-color: #000C1A;
+    padding: 0;
+    font-family: 'EpilepsySans', Arial, sans-serif;
+    background-image: url("images/background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-color: #6F616B;
+    background-attachment: scroll;
+    height: 100vh;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #000C1A;
-}
-
-header .logo {
-    font-size: 1.5em;
-    color: #00A3FF;
+    padding: 10px 20px;
+    color: white;
     font-weight: bold;
-}
-
-#hero {
-    text-align: center;
-    padding: 100px 20px;
-    background: linear-gradient(145deg, #000C1A, #00162D);
-}
-
-#hero h1 {
-    font-size: 2.5em;
-    color: #00A3FF;
-}
-
-#hero p {
-    font-size: 1.2em;
-    color: #C0C9D3;
-}
-
-.film-inputs {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.film-select-block {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.film-select-block input {
-    flex: 1; /* Поле ввода занимает оставшееся место */
-    padding: 8px; /* Внутренние отступы для удобства */
-    margin-right: 5px; /* Расстояние между полем и кнопкой */
-    font-size: 14px; /* Размер шрифта */
-
-    width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    background-color: #00162D;
-    color: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     box-sizing: border-box;
 }
 
-.film-select-block button {
-    padding: 6px 12px; /* Компактные отступы */
-    font-size: 14px; /* Размер шрифта */
-    cursor: pointer; /* Указатель мыши при наведении */
-    border: 1px solid #ccc; /* Граница кнопки */
-    background-color: #f5f5f5; /* Цвет фона */
-    border-radius: 4px; /* Сглаженные углы */
-    transition: background-color 0.3s; /* Анимация при наведении */
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: whitesmoke;
+    position: relative;
+    top: 14px;
 }
 
-.film-select-block button:hover {
-    background-color: #ddd; /* Цвет кнопки при наведении */
+header .version {
+    font-size: 20px;
+    color: whitesmoke;
+    text-align: right;
+    margin-left: auto;
+    position: relative;
+    top: 28px;
 }
 
-.film-dropdown {
-    position: absolute;
-    top: 45px;
-    width: 100%;
-    background-color: #00162D;
-    border-radius: 5px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    max-height: 150px;
-    overflow-y: auto;
-    display: none;
-    z-index: 10;
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
 }
 
-.film-dropdown div {
-    padding: 10px;
-    color: #C0C9D3;
-    cursor: pointer;
+#hero h1 {
+    font-size: 3rem;
+    color: #D2A679;
+    margin-bottom: 20px;
 }
 
-.film-dropdown div:hover {
-    background-color: #00A3FF;
+#hero p {
+    font-size: 2rem;
+    color: white;
 }
 
-#hero button {
-    margin-top: 20px;
-    padding: 15px 30px;
-    background-color: #00A3FF;
-    color: #ffffff;
+.styled-button {
+    background-color: #D2A679;
+    color: #fff;
     border: none;
-    border-radius: 50px;
-    font-size: 1em;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'EpilepsySans';
     cursor: pointer;
+    margin: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.styled-button:hover {
+    background-color: #B58D62;
+}
+
+.styled-button:active {
+    background-color: #8C6A4A;
+}
+
+.styled-input {
+    font-family: 'EpilepsySans';
+    border: 2px solid #D2A679; 
+    border-radius: 4px;
+    padding: 10px;
+    width: 20%;
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: #B58D62;
+    outline: none;
 }
 
 #result {
-    display: none;
-    margin-top: 50px;
+    font-family: 'EpilepsySans';
+    background-image: url('images/container-bg.png');
+    background-position: center;
+    background-size: cover;
     padding: 20px;
-    background-color: #00162D;
-    border-radius: 5px;
+    margin-top: 40px;
+    text-align: left;
+    border: 2px solid #A67B5B;
 }
 
-#result .main-movie img {
-    width: 200px;
+#result::after {
+    content: "";
+    display: block;
+    height: 80px;
+}
+
+.title {
+    font-weight: bold;
+    color: #000000;
+    text-decoration: underline;
+}
+
+.movie-info {
+    position: relative;
+    text-align: left;
+    font-size: 20px;
+    color: #333;
+    line-height: 1.5;
+}
+
+#movieTitle {
+    position: relative;
+    font-weight: bold;
+    text-align: left; 
+    font-size: 40px;
+    color: #654321;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.main-movie img {
+    max-width: 200px;
+    max-height: 300px;
+    width: auto;
     height: auto;
-    border-radius: 5px;
+    border: 2px solid #A67B5B;
 }
 
-#result .similar-movies {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+.main-movie {
+    display: flex;
     gap: 10px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+    font-size: 20px;
+    color: #2F2F2F;
+}
+
+#movieReason {
+    position: relative;
+    left: 10px;
+    flex: 1;
+    color: #333;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 100px;
+    margin: auto;
+}
+
+.square {
+    width: 15px;
+    height: 15px;
+    background-color: #D2A679; 
+    animation: bounce 1.2s infinite ease-in-out;
+}
+
+.square:nth-child(1) {
+    animation-delay: 0s;
+}
+.square:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.square:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px); 
+    }
+}
+
+@font-face {
+    font-family: 'EpilepsySans';
+    src: url('fonts/EpilepsySans.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #D2A679;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-size: cover;
+        background-position: left top;
+        background-attachment: scroll;
+    }
+
+    h1, h2, h3 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .film-select-block {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .styled-input {
+        flex: 1;
+    }
+    .styled-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    .main-movie {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #movieReason {
+        text-align: left;
+        margin-left: 0;
+        font-size: 20px;
+        line-height: 1.5;
+        max-width: 90%;
+        position: relative;
+        left: -22px;
+    }
+
+    #movieReason span.title {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    #moviePoster {
+        max-width: 100%;
+        height: auto;
+    }
+    .styled-button.search {
+        width: auto;
+        min-width: 100px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    header {
+        padding: 5px 10px;
+        position: relative;
+        margin-top: -8px;
+        right: 4px;
+    }
+
+    header .logo {
+        font-size: 18px;
+    }
+
+    header .version {
+        font-size: 16px;
+        position: relative;
+        margin-top: -20px;
+    }
 }
