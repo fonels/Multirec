@@ -136,3 +136,16 @@ window.addEventListener('resize', () => {
     footer.style.display = 'block';
   }
 });
+
+window.Telegram.WebApp.onEvent('viewportChanged', function() {
+  const viewportHeight = window.Telegram.WebApp.viewportHeight;
+  const stableHeight = window.Telegram.WebApp.viewportStableHeight;
+
+  if (viewportHeight < stableHeight) {
+    // Клавиатура открыта
+    footer.style.display = 'none';
+  } else {
+    // Клавиатура закрыта
+    footer.style.display = 'block';
+  }
+});
