@@ -118,3 +118,21 @@ document.addEventListener('click', function(event) {
 window.addEventListener('resize', () => {
   document.body.style.height = `${window.innerHeight}px`;
 });
+
+// Получаем ссылку на footer
+const footer = document.querySelector('footer');
+
+// Отслеживаем изменения размера окна
+window.addEventListener('resize', () => {
+  // Проверяем высоту окна
+  const viewportHeight = window.innerHeight;
+  const documentHeight = document.documentElement.clientHeight;
+
+  // Если высота окна уменьшилась, скрываем footer (клавиатура появилась)
+  if (viewportHeight < documentHeight) {
+    footer.style.display = 'none';
+  } else {
+    // Если высота окна вернулась, показываем footer (клавиатура закрылась)
+    footer.style.display = 'block';
+  }
+});

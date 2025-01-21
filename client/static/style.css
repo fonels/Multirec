@@ -240,7 +240,6 @@ footer a:hover {
         overflow: auto;
         background-size: cover;
         background-position: left top;
-        background-attachment: scroll;
     }
     styled-input {
         position: fixed;
