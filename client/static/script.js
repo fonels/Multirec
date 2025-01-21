@@ -115,37 +115,16 @@ document.addEventListener('click', function(event) {
   }
 });
 
-window.addEventListener('resize', () => {
-  document.body.style.height = `${window.innerHeight}px`;
-});
-
-// Получаем ссылку на footer
 const footer = document.querySelector('footer');
+const inputs = document.querySelectorAll('input, textarea');
 
-// Отслеживаем изменения размера окна
-window.addEventListener('resize', () => {
-  // Проверяем высоту окна
-  const viewportHeight = window.innerHeight;
-  const documentHeight = document.documentElement.clientHeight;
+// При фокусе на текстовом поле скрываем footer
+inputs.forEach(input => {
+  input.addEventListener('focus', () => {
+    footer.classList.add('hidden');
+  });
 
-  // Если высота окна уменьшилась, скрываем footer (клавиатура появилась)
-  if (viewportHeight < documentHeight) {
-    footer.style.display = 'none';
-  } else {
-    // Если высота окна вернулась, показываем footer (клавиатура закрылась)
-    footer.style.display = 'block';
-  }
-});
-
-window.Telegram.WebApp.onEvent('viewportChanged', function() {
-  const viewportHeight = window.Telegram.WebApp.viewportHeight;
-  const stableHeight = window.Telegram.WebApp.viewportStableHeight;
-
-  if (viewportHeight < stableHeight) {
-    // Клавиатура открыта
-    footer.style.display = 'none';
-  } else {
-    // Клавиатура закрыта
-    footer.style.display = 'block';
-  }
+  input.addEventListener('blur', () => {
+    footer.classList.remove('hidden');
+  });
 });
