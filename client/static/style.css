@@ -236,8 +236,7 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
-    html, body {
-        overflow: auto;
+    body {
         background-position: left top;
     }
     styled-input {
