@@ -236,10 +236,15 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
-    body {
+    html, body {
+        height: 100%;
+        overflow: hidden;
         background-size: cover;
         background-position: left top;
         background-attachment: scroll;
+    }
+    styled-input {
+        position: fixed;
     }
 
     h1, h2, h3 {
