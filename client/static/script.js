@@ -107,3 +107,14 @@ function updateResult(data) {
 function showInput(input) {
     console.log("Input field focused:", input);
 }
+
+document.addEventListener('click', function(event) {
+  // Проверяем, что клик был вне текстового поля
+  if (!event.target.closest('input')) {
+    document.activeElement.blur(); // Снимаем фокус с текстового поля
+  }
+});
+
+window.addEventListener('resize', () => {
+  document.body.style.height = `${window.innerHeight}px`;
+});

@@ -237,7 +237,6 @@ footer a:hover {
 
 @media (max-width: 768px) {
     html, body {
-        height: 100%;
         overflow: auto;
         background-size: cover;
         background-position: left top;
